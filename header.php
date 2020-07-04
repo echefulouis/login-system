@@ -27,7 +27,7 @@
                               <a class="nav-link" href="index.php">Home</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="#">GitHub</a>
+                              <a class="nav-link" href="https://github.com/echefulouis/login-system">GitHub</a>
                             </li>
                           </ul>
                           <form class="form-inline my-2 my-lg-0" action="includes/logout.inc.php" method="post">
