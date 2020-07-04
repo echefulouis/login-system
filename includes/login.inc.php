@@ -6,7 +6,7 @@ if(isset($_POST['login-submit'])) {
     $password= $_POST['pwd'];
 
     if(empty($mailuid) || empty($password)){
-        header("location: ../index.php?emptyfields");
+        header("location: ../index.php?error=emptyfields");
         exit();
     }else{
         $sql= "SELECT * FROM users WHERE uidUsers=? or emailUsers=?;";
@@ -21,15 +21,14 @@ if(isset($_POST['login-submit'])) {
             if ($row = mysqli_fetch_assoc($result)){
                 $pwdCheck= password_verify($password, $row["pwdUsers"]);
                 if ($pwdCheck== false) {
-                    header("location: ../index.php");
+                    header("location: ../index.php?error=wrongpassword&pwdUsers=".$row['pwdUsers']);
                     exit();
                 }else if($pwdCheck== true){
                     session_start();
-                    $_SESSION["userId"]=$row["pwdUsers"];
+                
                     $_SESSION["userUid"]=$row["uidUsers"];
 
-
-                    header("location: .../index.php?login=success");
+                    header("location: ../index.php?login=success");
                     exit();
                 }
             }else{
